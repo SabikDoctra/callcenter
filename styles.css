@@ -1,0 +1,505 @@
+:root {
+	--headPanelHeight: 130px;
+	--waitingPatientsWidth: 250px;
+	--leftPanelBlockWidth: 40px;
+	--slotWidth: 230px;
+	--slotHeight: 70px;
+	--slotCardHeight: 60px;
+}
+
+.bold {
+	font-weight: bold;
+	font-family: MyriadGEOBold, Consolas;
+}
+
+@font-face {
+	font-family: "MyriadGEOMedium";
+	src: url("fonts/MYRIADGEOMEDIUM.TTF");
+}
+
+@font-face {
+	font-family: "MyriadGEOBold";
+	src: url("fonts/MYRIADGEOBOLD.TTF");
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	font-family: MyriadGEOMedium, Consolas;
+}
+
+html {
+	overflow: visible;
+}
+
+.divtable {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.divrow {
+	display: table-row;
+}
+
+.divcell {
+	display: table-cell;
+	margin: 0;
+	user-select: none;
+	-webkit-user-select: none;
+	position: relative;
+}
+
+.leftcol {
+	width: 100px;
+	min-width: 100px;
+	position: -webkit-sticky;
+	position: sticky;
+	left: 0;
+}
+
+.toprow {
+	height: 100px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 10 !important;
+}
+
+.toprowleftcol {
+	background-color: #7a869a !important;
+	z-index: 10 !important;
+}
+
+.times {
+	z-index: 2 !important;
+	background-color: #7a869a !important;
+}
+
+.container {
+	z-index: 1 !important;
+	min-width: 600px;
+}
+.header {
+	height: var(--headPanelHeight);
+}
+
+.waiting {
+	width: var(--waitingPatientsWidth);
+	min-width: var(--waitingPatientsWidth);
+	display: inline-block;
+}
+
+.mainleft {
+	width: var(--leftPanelBlockWidth);
+	min-width: var(--leftPanelBlockWidth);
+	display: inline-block !important;
+
+	/*height: var(--headPanelHeight);*/
+	top: 0px;
+	position: absolute;
+}
+
+.displaynone {
+	display: none !important;
+}
+
+.leftcolwide {
+	min-width: calc(
+		var(--waitingPatientsWidth) + var(--leftPanelBlockWidth)
+	) !important;
+	width: calc(
+		var(--waitingPatientsWidth) + var(--leftPanelBlockWidth)
+	) !important;
+}
+
+.leftcolwidehidden {
+	min-width: calc(var(--leftPanelBlockWidth)) !important;
+	width: calc(var(--leftPanelBlockWidth)) !important;
+}
+.waitingContainer {
+	position: absolute;
+	top: 0;
+}
+
+/*------------*/
+
+.divTable {
+	display: table;
+	width: auto;
+	height: 150px;
+	background-color: #eee;
+	border: 1px solid #666666;
+	border-spacing: 0px;
+	left: 0px;
+}
+
+#headRowTable {
+	display: table;
+	width: auto;
+	height: var(--headPanelHeight);
+	background-color: #f4f5f7;
+	border-spacing: 0px;
+
+	color: #7a869a;
+	font-size: 13px;
+}
+
+#leftRow {
+	z-index: 2;
+
+	position: absolute;
+	/*position: -webkit-sticky; */
+	width: auto;
+
+	border-spacing: 0px;
+	left: 0px;
+	/*top: var(--headPanelHeight);*/
+	top: 0px;
+
+	display: flex;
+}
+
+#leftRowBody {
+	/*display: table-cell;*/
+	display: none;
+	width: var(--waitingPatientsWidth);
+	background-color: #7a869a;
+}
+
+#leftRowTimes {
+	display: table-cell;
+	width: var(--leftPanelBlockWidth);
+
+	background-color: #eee;
+	/*border:1px solid  #666666;*/
+}
+
+.waitingAmount{
+	position: absolute;
+    top: 10px;
+    background-color: #FFD800;
+    color: #7A869A;
+    border-radius: 50%;
+    width: 20px;
+    text-align: center;
+}
+
+.waitingTriger {
+	height: var(--headPanelHeight);
+	background-color: #7a869a;
+	display: inline-flex !important;
+	justify-content: center;
+	align-items: center;
+}
+
+.timeSlot {
+	height: 59px;
+	display: flex;
+	justify-content: right;
+	align-items: flex-start;
+	font-size: 10px;
+	padding: 5px;
+	color: #7a869a;
+	border-bottom: 1px solid #dfe1e6;
+	border-right: 1px solid #dfe1e6;
+}
+
+.divRow {
+	display: flex;
+	width: auto;
+	height: 30px;
+
+	justify-content: center;
+	align-items: center;
+}
+
+.headRowColumnDriverDoctor {
+	height: 40px !important;
+	line-height: 15px;
+	text-align: center;
+}
+
+.headRowColumn {
+	float: left; /*fix for  buggy browsers*/
+	display: table-column;
+	width: 100%;
+	height: 29px;
+	border-right: 1px solid #dfe1e6;
+	border-bottom: 1px solid #dfe1e6;
+}
+
+.headBrigadeColumn{
+	cursor: pointer;
+}
+.headBrigadeColumn:hover > div{
+	background-color: #e9ecf3;
+}
+
+.divCell {
+	float: left; /*fix for  buggy browsers*/
+	display: table-column;
+}
+
+.headDiv {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.headRowDateSpanDay {
+	font-weight: bold;
+	font-family: MyriadGEOBold, Consolas;
+	margin-right: 5px;
+}
+
+#bodySpace {
+	position: absolute;
+	display: flex;
+}
+
+.brigadeColumn {
+	width: var(--blockWidth);
+}
+.slot {
+	width: var(--slotWidth);
+	height: var(--slotHeight);
+	border-left: 1px #dfe1e600 solid;
+	border-top: 1px #dfe1e600 solid;
+	border-right: 1px #dfe1e6 solid;
+	border-bottom: 1px #dfe1e6 solid;
+	box-sizing: border-box;
+	position: relative;
+}
+.slotWaiting {
+	width: var(--slotWidth);
+	height: var(--slotHeight);
+	border-left: 1px #dfe1e600 solid;
+	border-top: 1px #dfe1e600 solid;
+	border-right: 1px #dfe1e600 solid;
+	border-bottom: 1px #dfe1e600 solid;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.timeWaiting{
+	background-color: #FFD800;
+    border-radius: 8px;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    align-items: center;
+}
+
+#bodySpace .card {
+	position: absolute;
+}
+
+.contextMenu {
+	z-index: 100;
+	position: absolute;
+	background-color: white;
+	border-radius: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 245;
+	box-shadow: 5px 5px 8px darkgrey;
+	color: #7a869a;
+	font-size: 14px;
+	width: 220px;
+}
+
+.contextMenu .separator {
+	background-color: #dfe1e6;
+	height: 1px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.displayNone {
+	display: none;
+}
+.displayBlock {
+	display: block;
+}
+
+.menuItem {
+	display: flex;
+	height: 30px;
+	align-items: center;
+}
+.menuItem > img {
+	margin-left: 13px;
+	margin-right: 10px;
+}
+.menuItem > span {
+	margin-right: 13px;
+}
+
+.menuItemHover {
+	cursor: pointer;
+	background-image: linear-gradient(to right, #3bbea5 2px, #f4f5f7 2px);
+}
+
+.visibilityHidden {
+	visibility: hidden;
+}
+
+.card {
+	display: table;
+	width: 220px;
+	height: var(--slotCardHeight);
+	background-color: white;
+	border-radius: 5px;
+	font-size: 11px;
+	margin: 2px;
+	padding: 2px;
+}
+.card-row {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+.card-col-left {
+	float: left; /* fix for  buggy browsers */
+	display: table-column;
+	width: 50px;
+	padding-left: 5px;
+}
+.card-col-right {
+	float: right; /* fix for  buggy browsers */
+	display: table-column;
+	width: 160px;
+	padding-right: 5px;
+}
+.card-disabled {
+	background-color: #f4f5f7 !important;
+}
+
+.circle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 1px solid white;
+}
+
+.circles {
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+	justify-content: space-between;
+	width: 45px;
+}
+
+.flex {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.waitingContainer {
+	position: absolute;
+	top: 0;
+	margin: 10px;
+}
+
+.card-selector {
+	position: absolute;
+	z-index: 5;
+	top: -1px;
+	left: -1px;
+
+	width: 100%;
+	height: 100%;
+}
+
+.card-selector-driver{
+    width: 16px;
+    height: 16px;
+    bottom: 8px;
+    left: 8px;
+    position: absolute;
+}
+.card-selector-doctor{
+    width: 16px;
+    height: 16px;
+    bottom: 8px;
+    left: 24px;
+    position: absolute;
+}
+.card-selector-doctor2{
+    width: 16px;
+    height: 16px;
+    bottom: 8px;
+    left: 40px;
+    position: absolute;
+}
+.tooltip{
+    position: absolute;
+}
+.tooltip-body{
+	color: white;
+	background-color: #2A5369;
+	position: absolute;
+	left: 0px;
+	top: 7px;
+	z-index: 2px;
+	font-size: 11px;
+	white-space: nowrap;
+	border-radius: 4px;
+	padding: 4px 10px 4px 10px;
+}
+.tooltip-arrow{
+	position: relative;
+	left: 10px;
+	top: 0px;
+}
+
+
+.card-selector-comment{
+    position: absolute;
+    left: 230px;
+	top: 15px;
+	display: flex;
+	flex-direction: row;
+	font-size: 11px;
+}
+
+.card-selector-comment_body{
+    background-color: #f5f5f5;
+	color:#2A5369;
+	border-radius: 4px;
+	border-top-left-radius: 0px;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	box-shadow: 5px 5px 8px darkgrey;
+}
+
+.card-selector-comment_img {
+	padding-top: 2px;
+}
+
+.card-selector-comment_text{
+	display: inline;
+	margin-left: 10px;
+	width:160px
+}
+
+
+.card-selector:hover {
+	background-color: #2d8dcc55;
+	border: 1px solid #2d8dcc55;
+}
+
+.card-selector-selected {
+	background-color: #2d8dcc88 !important;
+	border: 1px solid #2d8dcc !important;
+}

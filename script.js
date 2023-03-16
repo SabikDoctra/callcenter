@@ -100,26 +100,42 @@ function init_commands(jsonString, queue) {
 function update_cells(jsonString) {
 	let json = JSON.parse(jsonString);
 	if (json.redraw) {
-		brigadeDatePosition = new Array();
-		timeVerticalPosition = new Array();
-		selectedCards = new Array();
+		if (json.text_only) {
+			showError(json.text_only);
+		} else {
+			brigadeDatePosition = new Array();
+			timeVerticalPosition = new Array();
+			selectedCards = new Array();
 
-		initializeBodyDom();
+			initializeBodyDom();
 
-		generateHeadDom(jsonString);
-		generateLeftDom(jsonString);
+			generateHeadDom(jsonString);
+			generateLeftDom(jsonString);
 
-		bodySpace.style.width = rowWidthLength * rowWidth + "px";
-		bodySpace.style.height = rowHeightLength * rowheight + "px";
+			bodySpace.style.width = rowWidthLength * rowWidth + "px";
+			bodySpace.style.height = rowHeightLength * rowheight + "px";
 
-		prepareGrid(jsonString, json.redraw);
-		generateGrid(jsonString, json.redraw);
+			prepareGrid(jsonString, json.redraw);
+			generateGrid(jsonString, json.redraw);
+		}
 	} else {
 		json.data.forEach((element) => {
 			addCard(undefined, element);
 		});
 	}
 }
+
+const showError = (text) => {
+	content.innerHTML = "";
+
+	let error = document.createElement("div");
+	error.className = "error";
+	content.appendChild(error);
+
+	let errorText = document.createElement("h1");
+	errorText.innerHTML = text;
+	error.appendChild(errorText);
+};
 
 function prepareGrid(jsonString, redraw) {
 	grid = {};

@@ -16,6 +16,7 @@ let eventProperties = {
 	data: ""
 };
 let eventPropertiesReturn;
+let isTouch = false;
 
 let draggedCards = new Array();
 
@@ -41,7 +42,11 @@ function doctra_call(functionName, data) {
 }
 
 function init_commands(jsonString, queue) {
-	let json = JSON.parse(jsonString);
+	let json = JSON.parse(jsonString);	
+
+	isTouch = (('ontouchstart' in window) ||
+		(navigator.maxTouchPoints > 0) ||
+		(navigator.msMaxTouchPoints > 0));
 
 	contextMenuOld = document.getElementById(
 		"contextMenu" + (queue ? "Queue" : "")
@@ -629,7 +634,7 @@ function addCard(parent, element, leftPanel) {
 		previousCard.booking_document &&
 		previousCard.booking_document === element["ДокументБронирования"] &&
 		previousCard.booking_document_status === element["Статус"] &&
-		previousCard.booking_document_status === "დაჯავშნილია" &&
+		//previousCard.booking_document_status === "დაჯავშნილია" &&
 		(existingObject && !parent ? existingObject.previousSibling === previousCard : true)
 	) {
 
@@ -670,14 +675,14 @@ function addCard(parent, element, leftPanel) {
 	slotDiv.ids = element["ИД"];
 	slotDiv.booking_document = element["ДокументБронирования"];
 	slotDiv.booking_document_status = element["Статус"];
-	slotDiv.draggable = true;
+	slotDiv.draggable = !isTouch;
 	slotDiv.addEventListener("dragstart", cardOnDragStart);
 	slotDiv.addEventListener("dragend", cardOnDragEnd);
 	slotDiv.addEventListener("dragover", cardOnDragOver);
 	// slotDiv.addEventListener("dragenter", cardOnDragEnter);
 	// slotDiv.addEventListener("dragleave", cardOnDragLeave);
 	slotDiv.addEventListener("drop", cardOnDrop);
-
+	
 	if (existingObject) {
 		ids = getCardIdFromChildNode(existingObject);
 		existingObject.parentElement.insertBefore(slotDiv, existingObject);

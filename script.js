@@ -634,7 +634,7 @@ function addCard(parent, element, leftPanel) {
 		previousCard.booking_document &&
 		previousCard.booking_document === element["ДокументБронирования"] &&
 		previousCard.booking_document_status === element["Статус"] &&
-		//previousCard.booking_document_status === "დაჯავშნილია" &&
+		previousCard.booking_document_status !== "გაუქმებულია" &&
 		(existingObject && !parent ? existingObject.previousSibling === previousCard : true)
 	) {
 

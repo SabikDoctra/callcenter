@@ -915,6 +915,7 @@ content.addEventListener(
 			if (!e.target.classList.contains('card-selector-selected')) {
 				clearSelectedCards();
 				selectCard(e);
+				selectSlotCard(e);
 			}
 		}
 
@@ -933,8 +934,6 @@ content.addEventListener(
 			showContextMenu(contextMenuObject, e);
 		}
 		e.preventDefault();
-
-		console.log(e.target);
 	},
 	false
 );
@@ -1088,14 +1087,16 @@ function cardOnClick(e) {
 	}
 	selectCard(e);
 
+	selectSlotCard(e);
+}
+
+function selectSlotCard(e) {
 	if (e.target.slot_id) {
 		let targetSlotId = document.getElementById(e.target.slot_id).parentNode;
-		let PositionX =
-			targetSlotId.offsetLeft -
+		let PositionX = targetSlotId.offsetLeft -
 			document.body.clientWidth / 2 +
 			targetSlotId.clientWidth;
-		let PositionY =
-			targetSlotId.offsetTop -
+		let PositionY = targetSlotId.offsetTop -
 			document.body.clientHeight / 2 +
 			targetSlotId.clientHeight;
 		window.scroll(PositionX, PositionY);
@@ -1189,6 +1190,13 @@ function cardCommentHide(event) {
 
 function cardOnDragStart(e) {
 	draggedCards = getCardIdFromChildNode(this);
+	if (this.lastElementChild.slot_id) {
+		let ids = getCardIdFromChildNode(document.getElementById(this.lastElementChild.slot_id));
+		ids.forEach((e) => {
+			draggedCards.push(e);
+		});
+		
+	}
 
 	command_name = "copy";
 	if (this.classList.contains("slotWaiting")) {

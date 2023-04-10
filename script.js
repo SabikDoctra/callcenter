@@ -125,7 +125,7 @@ function update_cells(jsonString) {
 		}
 	} else {
 		json.data.forEach((element) => {
-			addCard(undefined, element);
+			addCard(undefined, element, false);
 		});
 	}
 }
@@ -630,6 +630,7 @@ function addCard(parent, element, leftPanel) {
 	let existingObject = document.getElementById("slot_" + element["ИД"]);
 
 	if (
+		!leftPanel &&
 		previousCard &&
 		previousCard.booking_document &&
 		previousCard.booking_document === element["ДокументБронирования"] &&

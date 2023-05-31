@@ -1006,7 +1006,7 @@ function sendCardEventClick(id, doubleclick) {
 		event_name: !doubleclick ? "click" : "doubleclick",
 		data: JSON.stringify({
 			type: "cell",
-			cells: [id],
+			cells: selectedCards,
 		}),
 	};
 }

@@ -324,10 +324,10 @@ function initializeBodyDom() {
 	headRowTable.id = "headRowTable";
 	divrow1Right.appendChild(headRowTable);
 
-	let headRowDateRow = document.createElement("div");
-	headRowDateRow.id = "headRowDateRow";
-	headRowDateRow.className = "divRow";
-	headRowTable.appendChild(headRowDateRow);
+	// let headRowDateRow = document.createElement("div");
+	// headRowDateRow.id = "headRowDateRow";
+	// headRowDateRow.className = "divRow";
+	// headRowTable.appendChild(headRowDateRow);
 
 	let headRowBrigadeRow = document.createElement("div");
 	headRowBrigadeRow.id = "headRowBrigadeRow";
@@ -406,6 +406,23 @@ function generateHeadDom(jsonString) {
 			headRowBrigade.addEventListener("dblclick", brigadesOnDoubleClick);
 			headRowBrigadeRow.appendChild(headRowBrigade);
 
+			let headRowDate = document.createElement("div");
+			headRowDate.className = "headRowColumn";
+			headRowBrigade.appendChild(headRowDate);
+
+			let headRowDateDiv = document.createElement("div");
+			headRowDateDiv.className = "divRow";
+			headRowDate.appendChild(headRowDateDiv);
+
+			let headRowDateSpanDay = document.createElement("span");
+			headRowDateSpanDay.className = "headRowDateSpanDay";
+			headRowDateSpanDay.innerHTML = headDates[key][0]["ТекстДня"];
+			headRowDateDiv.appendChild(headRowDateSpanDay);
+
+			let headRowDateSpanDate = document.createElement("span");
+			headRowDateSpanDate.innerHTML = getHeadRowDate(key);
+			headRowDateDiv.appendChild(headRowDateSpanDate);
+
 			let headRowBrigadeName = document.createElement("div");
 			headRowBrigadeName.className = "headRowColumn";
 			headRowBrigade.appendChild(headRowBrigadeName);
@@ -467,26 +484,26 @@ function generateHeadDom(jsonString) {
 			rowWidthLength++;
 		});
 
-		brigateAmount = headDates[key].length;
+		// brigateAmount = headDates[key].length;
 
-		let headRowDate = document.createElement("div");
-		headRowDate.className = "headRowColumn";
-		// headRowDate.innerHTML = key + headDates[key][0]['ТекстДня'];
-		headRowDate.style.width = brigateAmount * rowWidth - 1 + "px";
-		headRowDateRow.appendChild(headRowDate);
+		// let headRowDate = document.createElement("div");
+		// headRowDate.className = "headRowColumn";
+		// // headRowDate.innerHTML = key + headDates[key][0]['ТекстДня'];
+		// headRowDate.style.width = brigateAmount * rowWidth - 1 + "px";
+		// headRowDateRow.appendChild(headRowDate);
 
-		let headRowDateDiv = document.createElement("div");
-		headRowDateDiv.className = "headDiv";
-		headRowDate.appendChild(headRowDateDiv);
+		// let headRowDateDiv = document.createElement("div");
+		// headRowDateDiv.className = "headDiv";
+		// headRowDate.appendChild(headRowDateDiv);
 
-		let headRowDateSpanDay = document.createElement("span");
-		headRowDateSpanDay.className = "headRowDateSpanDay";
-		headRowDateSpanDay.innerHTML = headDates[key][0]["ТекстДня"];
-		headRowDateDiv.appendChild(headRowDateSpanDay);
+		// let headRowDateSpanDay = document.createElement("span");
+		// headRowDateSpanDay.className = "headRowDateSpanDay";
+		// headRowDateSpanDay.innerHTML = headDates[key][0]["ТекстДня"];
+		// headRowDateDiv.appendChild(headRowDateSpanDay);
 
-		let headRowDateSpanDate = document.createElement("span");
-		headRowDateSpanDate.innerHTML = getHeadRowDate(key);
-		headRowDateDiv.appendChild(headRowDateSpanDate);
+		// let headRowDateSpanDate = document.createElement("span");
+		// headRowDateSpanDate.innerHTML = getHeadRowDate(key);
+		// headRowDateDiv.appendChild(headRowDateSpanDate);
 	});
 }
 

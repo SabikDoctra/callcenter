@@ -269,6 +269,11 @@ html {
 	margin-right: 5px;
 }
 
+.headRowBold {
+	font-weight: bold;
+	font-family: MyriadGEOBold, Consolas;
+}
+
 #bodySpace {
 	position: absolute;
 	display: flex;

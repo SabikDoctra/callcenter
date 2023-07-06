@@ -411,7 +411,7 @@ function generateHeadDom(jsonString) {
 			headRowBrigade.appendChild(headRowDate);
 
 			let headRowDateDiv = document.createElement("div");
-			headRowDateDiv.className = "divRow";
+			headRowDateDiv.className = "divRow headRowBold";
 			headRowDate.appendChild(headRowDateDiv);
 
 			let headRowDateSpanDay = document.createElement("span");
@@ -424,7 +424,7 @@ function generateHeadDom(jsonString) {
 			headRowDateDiv.appendChild(headRowDateSpanDate);
 
 			let headRowBrigadeName = document.createElement("div");
-			headRowBrigadeName.className = "headRowColumn";
+			headRowBrigadeName.className = "headRowColumn headRowBold";
 			headRowBrigade.appendChild(headRowBrigadeName);
 
 			let headRowBrigadeNameDiv = document.createElement("div");

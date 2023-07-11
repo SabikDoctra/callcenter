@@ -429,6 +429,9 @@ function generateHeadDom(jsonString) {
 
 			let headRowBrigadeNameDiv = document.createElement("div");
 			headRowBrigadeNameDiv.className = "divRow";
+			if(element["БригадаЦвет"]) {
+				headRowBrigadeNameDiv.style = "background-color: " + element["БригадаЦвет"];
+			}			
 			headRowBrigadeName.appendChild(headRowBrigadeNameDiv);
 
 			let headRowBrigadeNameSpan = document.createElement("span");

@@ -467,7 +467,7 @@ function generateHeadDom(jsonString) {
 			// headRowBrigadeDoctorDiv.appendChild(headRowBrigadeDoctorSpan);
 
 			let headRowBrigadeComment = document.createElement("div");
-			headRowBrigadeComment.className = "headRowColumn";
+			headRowBrigadeComment.className = "headRowColumn headRowBold";
 			// headRowBrigadeComment.innerHTML = element["Комментарий"];
 			headRowBrigade.appendChild(headRowBrigadeComment);
 

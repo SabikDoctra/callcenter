@@ -208,7 +208,7 @@ html {
 }
 
 .timeSlot {
-	height: 59px;
+	height: var(--slotHeight);
 	display: flex;
 	justify-content: right;
 	align-items: flex-start;
@@ -217,6 +217,7 @@ html {
 	color: #7a869a;
 	border-bottom: 1px solid #dfe1e6;
 	border-right: 1px solid #dfe1e6;
+	box-sizing: border-box;
 }
 
 .divRow {

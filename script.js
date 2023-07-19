@@ -1,6 +1,11 @@
-
-const rowWidth = 230;
-const rowheight = 70;
+const cssRoot = document.querySelector(":root");
+// const rowWidth = 180;
+// const rowHeight = 50;
+const rowWidth = 160;
+const rowHeight = 40;
+const cardWidth = rowWidth - 10;
+const cardHeight = rowHeight - 10;
+const cardColLeftWidth = 50;
 const leftPanelBlockWidth = 44;
 const leftPanelBlockheight = 70;
 let brigadeDatePosition = new Array();
@@ -100,6 +105,12 @@ function init_commands(jsonString, queue) {
 		}
 		contextMenuObject.appendChild(menuOption);
 	});
+
+	cssRoot.style.setProperty(`--slotWidth`, `${rowWidth}px`);
+	cssRoot.style.setProperty(`--slotHeight`, `${rowHeight}px`);
+	cssRoot.style.setProperty(`--slotCardWidth`, `${cardWidth}px`);
+	cssRoot.style.setProperty(`--slotCardHeight`, `${cardHeight}px`);
+	cssRoot.style.setProperty(`--cardColLeftWidth`, `${cardColLeftWidth}px`);
 }
 
 function update_cells(jsonString) {
@@ -118,7 +129,7 @@ function update_cells(jsonString) {
 			generateLeftDom(jsonString);
 
 			bodySpace.style.width = rowWidthLength * rowWidth + "px";
-			bodySpace.style.height = rowHeightLength * rowheight + "px";
+			bodySpace.style.height = rowHeightLength * rowHeight + "px";
 
 			prepareGrid(jsonString, json.redraw);
 			generateGrid(jsonString, json.redraw);
@@ -446,7 +457,7 @@ function generateHeadDom(jsonString) {
 			let headRowBrigadeDriverDiv = document.createElement("div");
 			headRowBrigadeDriverDiv.className = "divRow headRowColumnDriverDoctor";
 			headRowBrigadeDriverDiv.innerHTML =
-				element["Водитель"] + "<br>" + element["Флеботомист"];
+			(element["Водитель"].length >= 20 ? element["Водитель"].substring(0, 20-3) + "..." : element["Водитель"]) + "<br>" + (element["Флеботомист"].length >= 20 ? element["Флеботомист"].substring(0, 20-3) + "..." : element["Флеботомист"]);
 			headRowBrigadeDriver.appendChild(headRowBrigadeDriverDiv);
 
 			// let headRowBrigadeDoctorSpan = document.createElement("div");
@@ -467,7 +478,7 @@ function generateHeadDom(jsonString) {
 			// headRowBrigadeDoctorDiv.appendChild(headRowBrigadeDoctorSpan);
 
 			let headRowBrigadeComment = document.createElement("div");
-			headRowBrigadeComment.className = "headRowColumn headRowBold";
+			headRowBrigadeComment.className = "headRowColumn headRowBold headRowComment";
 			// headRowBrigadeComment.innerHTML = element["Комментарий"];
 			headRowBrigade.appendChild(headRowBrigadeComment);
 
@@ -680,8 +691,8 @@ function addCard(parent, element, leftPanel) {
 			multiplier = +previousCard.style.height.split("*")[1].split(")")[0] + 1;
 		}
 		previousCard.style.height = `calc(var(--slotHeight)*${multiplier})`;
-		previousCard.childNodes[0].style.height = `calc(var(--slotHeight)*${multiplier} - var(--slotHeight) + var(--slotCardHeight))`;
-		previousCard.childNodes[0].childNodes[1].style.height = `calc(var(--slotHeight)*${multiplier} - var(--slotHeight) + var(--slotCardHeight) - var(--slotCardHeight)*2/3)`;
+		previousCard.childNodes[0].style.height = `calc(var(--slotHeight)*${(multiplier-1)} + var(--slotCardHeight))`;
+		previousCard.childNodes[0].childNodes[0].style.height = `calc(var(--slotHeight)*${(multiplier-1)} + var(--slotCardHeight)*1/2)`;
 
 		previousCard.ids += "," + element["ИД"];
 
@@ -785,7 +796,7 @@ function addCard(parent, element, leftPanel) {
 	}
 
 	let cardRow1 = document.createElement("div");
-	cardRow1.className = "card-row";
+	cardRow1.className = "card-row card-row-top";
 	card.appendChild(cardRow1);
 
 	let fullTime = element["ВремяНачала"].split("T")[1];
@@ -808,47 +819,11 @@ function addCard(parent, element, leftPanel) {
 	let cardColRightFlex = document.createElement("div");
 	cardColRightFlex.className = "flex";
 	cardColRightFlex.innerHTML =
-		element["Пациент"] == "" ? "&nbsp;" : element["Пациент"];
+		element["Пациент"] == "" ? "&nbsp;" : (element["Пациент"].length >= 14 ? element["Пациент"].substring(0, 14-3) + "..." : element["Пациент"]);//element["Пациент"] == "" ? "&nbsp;" : element["Пациент"];
 	cardColRight.appendChild(cardColRightFlex);
 
-	let cardRow2 = document.createElement("div");
-	cardRow2.className = "card-row";
-	card.appendChild(cardRow2);
-
-	let cardColLeft2 = document.createElement("div");
-	cardColLeft2.className = "card-col-left";
-	cardRow2.appendChild(cardColLeft2);
-
-	if (element["Комментарий"]) {
-		let cardColLeft2Img = document.createElement("img");
-		cardColLeft2Img.src = "assets/comment.svg";
-		cardColLeft2.appendChild(cardColLeft2Img);
-		cardColLeft2.title = element["Комментарий"];
-	}
-
-	let cardColRight2 = document.createElement("div");
-	cardColRight2.className = "card-col-right";
-	cardRow2.appendChild(cardColRight2);
-
-	let cardColRight2Flex = document.createElement("div");
-	cardColRight2Flex.className = "flex";
-	cardColRight2.appendChild(cardColRight2Flex);
-
-	if (element["КоличествоПациентов"] > 1) {
-		let cardColRight2Img = document.createElement("img");
-		cardColRight2Img.src = "assets/person.svg";
-		cardColRight2Flex.appendChild(cardColRight2Img);
-
-		let cardColRight2FlexText = document.createElement("span");
-		cardColRight2FlexText.innerHTML =
-			"&nbsp;x&nbsp;" + element["КоличествоПациентов"];
-		cardColRight2Flex.appendChild(cardColRight2FlexText);
-	} else {
-		cardColRight2Flex.innerHTML = "&nbsp;";
-	}
-
 	let cardRow3 = document.createElement("div");
-	cardRow3.className = "card-row";
+	cardRow3.className = "card-row card-row-bottom";
 	card.appendChild(cardRow3);
 
 	let cardColLeft3 = document.createElement("div");
@@ -897,14 +872,42 @@ function addCard(parent, element, leftPanel) {
 	cardColRight3Flex.className = "flex";
 	cardColRight3.appendChild(cardColRight3Flex);
 
+	if (element["Комментарий"]) {
+		let cardColLeft2Img = document.createElement("img");
+		cardColLeft2Img.src = "assets/comment.svg";
+		cardColLeft2Img.style.marginRight = "3px";
+		cardColLeft2Img.style.marginTop = "2px";
+		cardColLeft2Img.style.height = "10px";
+		cardColRight3Flex.appendChild(cardColLeft2Img);
+		cardColRight3Flex.title = element["Комментарий"];
+	}
+
+	if (element["КоличествоПациентов"] > 1) {
+		let cardColRight2Img = document.createElement("img");
+		cardColRight2Img.src = "assets/person.svg";
+		cardColRight2Img.style.marginTop = "2px";
+		cardColRight2Img.style.height = "10px";
+		cardColRight3Flex.appendChild(cardColRight2Img);
+
+		let cardColRight2FlexText = document.createElement("span");
+		cardColRight2FlexText.className = "card-row-bottom_span";
+		cardColRight2FlexText.innerHTML =
+			"&nbsp;x&nbsp;" + element["КоличествоПациентов"];
+		cardColRight2FlexText.style.marginRight = "3px";
+		cardColRight3Flex.appendChild(cardColRight2FlexText);
+	}
+
 	if (element["Район"] !== "") {
 		let cardColRight3Img = document.createElement("img");
 		cardColRight3Img.src = "assets/pin.svg";
-		cardColRight3Img.style.marginRight = "5px";
+		cardColRight3Img.style.marginRight = "3px";
+		cardColRight3Img.style.marginTop = "2px";
+		cardColRight3Img.style.height = "10px";
 		cardColRight3Flex.appendChild(cardColRight3Img);
 
 		let cardColRight3Span = document.createElement("span");
 		cardColRight3Span.innerHTML = element["Район"];
+		cardColRight3Span.className = "card-row-bottom_span";
 		cardColRight3Flex.appendChild(cardColRight3Span);
 	}
 }

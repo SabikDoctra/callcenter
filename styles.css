@@ -3,8 +3,10 @@
 	--waitingPatientsWidth: 250px;
 	--leftPanelBlockWidth: 40px;
 	--slotWidth: 230px;
+	--slotCardWidth: 220px;
 	--slotHeight: 70px;
 	--slotCardHeight: 60px;
+	--cardColLeftWidth: 50px;
 }
 
 .bold {
@@ -275,6 +277,10 @@ html {
 	font-family: MyriadGEOBold, Consolas;
 }
 
+.headRowComment {
+	font-size: 12px !important;
+}
+
 #bodySpace {
 	position: absolute;
 	display: flex;
@@ -308,7 +314,7 @@ html {
 	background-color: #FFD800;
     border-radius: 8px;
     display: flex;
-    height: 18px;
+    height: 13px;
     justify-content: center;
     align-items: center;
 }
@@ -369,7 +375,7 @@ html {
 
 .card {
 	display: table;
-	width: 220px;
+	width: var(--slotCardWidth);
 	height: var(--slotCardHeight);
 	background-color: white;
 	border-radius: 5px;
@@ -382,16 +388,28 @@ html {
 	width: auto;
 	clear: both;
 }
+.card-row-top {
+	height: calc(var(--slotCardHeight)*1/2);
+}
+.card-row-bottom {
+	height: calc(var(--slotCardHeight)*1/2) !important;
+}
+.card-row-bottom {
+	height: calc(var(--slotCardHeight)*1/2) !important;
+}
+.card-row-bottom_span {
+	font-size: 10px !important;
+}
 .card-col-left {
 	float: left; /* fix for  buggy browsers */
 	display: table-column;
-	width: 50px;
+	width: var(--cardColLeftWidth);
 	padding-left: 5px;
 }
 .card-col-right {
 	float: right; /* fix for  buggy browsers */
 	display: table-column;
-	width: 160px;
+	width: calc(var(--slotCardWidth) - var(--cardColLeftWidth) - 10px);
 	padding-right: 5px;
 }
 .card-disabled {
@@ -399,8 +417,8 @@ html {
 }
 
 .circle {
-	width: 12px;
-	height: 12px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
 	border: 1px solid white;
 }
@@ -410,7 +428,7 @@ html {
 	padding: 0px;
 	display: flex;
 	justify-content: space-between;
-	width: 45px;
+	width: 39px;
 }
 
 .flex {
@@ -480,7 +498,7 @@ html {
 
 .card-selector-comment{
     position: absolute;
-    left: 230px;
+    left: var(--slotWidth);
 	top: 15px;
 	display: flex;
 	flex-direction: row;

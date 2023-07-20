@@ -457,7 +457,7 @@ function generateHeadDom(jsonString) {
 			let headRowBrigadeDriverDiv = document.createElement("div");
 			headRowBrigadeDriverDiv.className = "divRow headRowColumnDriverDoctor";
 			headRowBrigadeDriverDiv.innerHTML =
-			(element["Водитель"].length >= 20 ? element["Водитель"].substring(0, 20-3) + "..." : element["Водитель"]) + "<br>" + (element["Флеботомист"].length >= 20 ? element["Флеботомист"].substring(0, 20-3) + "..." : element["Флеботомист"]);
+			limitChars(element["Водитель"], 20) + "<br>" + limitChars(element["Водитель"], 20);
 			headRowBrigadeDriver.appendChild(headRowBrigadeDriverDiv);
 
 			// let headRowBrigadeDoctorSpan = document.createElement("div");
@@ -819,7 +819,7 @@ function addCard(parent, element, leftPanel) {
 	let cardColRightFlex = document.createElement("div");
 	cardColRightFlex.className = "flex";
 	cardColRightFlex.innerHTML =
-		element["Пациент"] == "" ? "&nbsp;" : (element["Пациент"].length >= 14 ? element["Пациент"].substring(0, 14-3) + "..." : element["Пациент"]);//element["Пациент"] == "" ? "&nbsp;" : element["Пациент"];
+		element["Пациент"] == "" ? "&nbsp;" : limitChars(element["Пациент"], 14);//element["Пациент"] == "" ? "&nbsp;" : element["Пациент"];
 	cardColRight.appendChild(cardColRightFlex);
 
 	let cardRow3 = document.createElement("div");
@@ -898,15 +898,15 @@ function addCard(parent, element, leftPanel) {
 	}
 
 	if (element["Район"] !== "") {
-		let cardColRight3Img = document.createElement("img");
-		cardColRight3Img.src = "assets/pin.svg";
-		cardColRight3Img.style.marginRight = "3px";
-		cardColRight3Img.style.marginTop = "2px";
-		cardColRight3Img.style.height = "10px";
-		cardColRight3Flex.appendChild(cardColRight3Img);
+		// let cardColRight3Img = document.createElement("img");
+		// cardColRight3Img.src = "assets/pin.svg";
+		// cardColRight3Img.style.marginRight = "3px";
+		// cardColRight3Img.style.marginTop = "2px";
+		// cardColRight3Img.style.height = "10px";
+		// cardColRight3Flex.appendChild(cardColRight3Img);
 
 		let cardColRight3Span = document.createElement("span");
-		cardColRight3Span.innerHTML = element["Район"];
+		cardColRight3Span.innerHTML = limitChars(element["Район"], 11);
 		cardColRight3Span.className = "card-row-bottom_span";
 		cardColRight3Flex.appendChild(cardColRight3Span);
 	}
@@ -1285,6 +1285,12 @@ function cardOnDrop(e) {
 		}),
 	};
 	clickButton.click();
+}
+
+function limitChars(str, len) {
+
+	return (str.length >= len ? str.substring(0, len-3) + "..." : str);
+
 }
 
 document.body.addEventListener("dblclick", function (evt) {

@@ -457,7 +457,7 @@ function generateHeadDom(jsonString) {
 			let headRowBrigadeDriverDiv = document.createElement("div");
 			headRowBrigadeDriverDiv.className = "divRow headRowColumnDriverDoctor";
 			headRowBrigadeDriverDiv.innerHTML =
-			limitChars(element["Водитель"], 20) + "<br>" + limitChars(element["Водитель"], 20);
+			limitChars(element["Водитель"], 20) + "<br>" + limitChars(element["Флеботомист"], 20);
 			headRowBrigadeDriver.appendChild(headRowBrigadeDriverDiv);
 
 			// let headRowBrigadeDoctorSpan = document.createElement("div");

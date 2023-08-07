@@ -642,15 +642,20 @@ function generateCardsLeft(jsonString, redraw) {
 		addCard(waitingContainer, element, true);
 
 		if (element["ИД_Сетки"]) {
+			var additionalColor = "";
+			if(element["ДопСтатусКоллцентраЦвет"]){
+				additionalColor = ` style='background-color: ${element["ДопСтатусКоллцентраЦвет"]}'`;
+			}
+
 			timeElement = document.getElementById("time_" + element["ИД"]);
 			timeElement.innerHTML =
-				"<div class='timeWaiting'><img src='assets/waiting_slot.svg' width='12px'>&nbsp;" +
+				`<div class='timeWaiting'${additionalColor}><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
 				timeElement.time +
 				"</div>";
 
 			timeElement = document.getElementById("time_" + element["ИД_Сетки"]);
 			timeElement.innerHTML =
-				"<div class='timeWaiting'><img src='assets/waiting_slot.svg' width='12px'>&nbsp;" +
+				`<div class='timeWaiting'${additionalColor}><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
 				timeElement.time +
 				"</div>";
 		}

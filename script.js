@@ -411,7 +411,7 @@ function generateHeadDom(jsonString) {
 
 			let headRowBrigade = document.createElement("div");
 			headRowBrigade.className = "headRowColumn headBrigadeColumn";
-			headRowBrigade.style.width = rowWidth - 1 + "px";
+			// headRowBrigade.style.width = rowWidth - 1 + "px";
 			headRowBrigade.id = headRowBrigadeid;
 			headRowBrigade.ids = headRowBrigadeid;
 			headRowBrigade.addEventListener("dblclick", brigadesOnDoubleClick);
@@ -434,20 +434,33 @@ function generateHeadDom(jsonString) {
 			headRowDateSpanDate.innerHTML = getHeadRowDate(key);
 			headRowDateDiv.appendChild(headRowDateSpanDate);
 
-			let headRowBrigadeName = document.createElement("div");
-			headRowBrigadeName.className = "headRowColumn headRowBold";
-			headRowBrigade.appendChild(headRowBrigadeName);
+			// let headRowBrigadeName = document.createElement("div");
+			// headRowBrigadeName.className = "headRowColumn headRowBold";
+			// headRowBrigade.appendChild(headRowBrigadeName);
 
-			let headRowBrigadeNameDiv = document.createElement("div");
-			headRowBrigadeNameDiv.className = "divRow";
-			if(element["БригадаЦвет"]) {
-				headRowBrigadeNameDiv.style = "background-color: " + element["БригадаЦвет"];
-			}			
-			headRowBrigadeName.appendChild(headRowBrigadeNameDiv);
+			// let headRowBrigadeNameDiv = document.createElement("div");
+			// headRowBrigadeNameDiv.className = "divRow";
+			// if(element["БригадаЦвет"]) {
+			// 	headRowBrigadeNameDiv.style = "background-color: " + element["БригадаЦвет"];
+			// }			
+			// headRowBrigadeName.appendChild(headRowBrigadeNameDiv);
 
-			let headRowBrigadeNameSpan = document.createElement("span");
-			headRowBrigadeNameSpan.innerHTML = element["Бригада"];
-			headRowBrigadeNameDiv.appendChild(headRowBrigadeNameSpan);
+			// let headRowBrigadeNameSpan = document.createElement("span");
+			// headRowBrigadeNameSpan.innerHTML = element["Бригада"];
+			// headRowBrigadeNameDiv.appendChild(headRowBrigadeNameSpan);
+
+			let headRowBrigadeComment = document.createElement("div");
+			headRowBrigadeComment.className = "headRowColumn headRowBold headRowComment";
+			// headRowBrigadeComment.innerHTML = element["Комментарий"];
+			headRowBrigade.appendChild(headRowBrigadeComment);
+
+			let headRowBrigadeCommentDiv = document.createElement("div");
+			headRowBrigadeCommentDiv.className = "divRow";
+			headRowBrigadeComment.appendChild(headRowBrigadeCommentDiv);
+
+			let headRowBrigadeCommentSpan = document.createElement("span");
+			headRowBrigadeCommentSpan.innerHTML = element["Комментарий"];
+			headRowBrigadeCommentDiv.appendChild(headRowBrigadeCommentSpan);
 
 			let headRowBrigadeDriver = document.createElement("div");
 			headRowBrigadeDriver.className =
@@ -476,19 +489,6 @@ function generateHeadDom(jsonString) {
 			// let headRowBrigadeDoctorSpan = document.createElement("span");
 			// headRowBrigadeDoctorSpan.innerHTML = element["Флеботомист"];
 			// headRowBrigadeDoctorDiv.appendChild(headRowBrigadeDoctorSpan);
-
-			let headRowBrigadeComment = document.createElement("div");
-			headRowBrigadeComment.className = "headRowColumn headRowBold headRowComment";
-			// headRowBrigadeComment.innerHTML = element["Комментарий"];
-			headRowBrigade.appendChild(headRowBrigadeComment);
-
-			let headRowBrigadeCommentDiv = document.createElement("div");
-			headRowBrigadeCommentDiv.className = "divRow";
-			headRowBrigadeComment.appendChild(headRowBrigadeCommentDiv);
-
-			let headRowBrigadeCommentSpan = document.createElement("span");
-			headRowBrigadeCommentSpan.innerHTML = element["Комментарий"];
-			headRowBrigadeCommentDiv.appendChild(headRowBrigadeCommentSpan);
 
 			brigadeDatePosition[
 				element["БригадаКод"] +

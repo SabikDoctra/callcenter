@@ -1,5 +1,5 @@
 :root {
-	--headPanelHeight: 130px;
+	--headPanelHeight: 100px;
 	--waitingPatientsWidth: 250px;
 	--leftPanelBlockWidth: 40px;
 	--slotWidth: 230px;
@@ -241,9 +241,10 @@ html {
 	float: left; /*fix for  buggy browsers*/
 	display: table-column;
 	width: var(--slotWidth);
-	height: 29px;
+	height: 30px;
 	border-right: 1px solid #dfe1e6;
 	border-bottom: 1px solid #dfe1e6;
+	box-sizing: border-box;
 }
 
 .headBrigadeColumn{

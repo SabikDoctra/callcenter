@@ -642,20 +642,15 @@ function generateCardsLeft(jsonString, redraw) {
 		addCard(waitingContainer, element, true);
 
 		if (element["ИД_Сетки"]) {
-			var additionalColor = "";
-			if(element["ДопСтатусКоллцентраЦвет"]){
-				additionalColor = ` style='background-color: ${element["ДопСтатусКоллцентраЦвет"]}'`;
-			}
-
 			timeElement = document.getElementById("time_" + element["ИД"]);
 			timeElement.innerHTML =
-				`<div class='timeWaiting'${additionalColor}><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
+				`<div class='timeWaiting'><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
 				timeElement.time +
 				"</div>";
 
 			timeElement = document.getElementById("time_" + element["ИД_Сетки"]);
 			timeElement.innerHTML =
-				`<div class='timeWaiting'${additionalColor}><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
+				`<div class='timeWaiting'><img src='assets/waiting_slot.svg' width='12px'>&nbsp;` +
 				timeElement.time +
 				"</div>";
 		}
@@ -813,7 +808,11 @@ function addCard(parent, element, leftPanel) {
 	cardColLeft1.id = "time_" + element["ИД"];
 	cardColLeft1.time = time;
 	if (!leftPanel) {
-		cardColLeft1.innerHTML = time;
+		if(element["ДопСтатусКоллцентраЦвет"]) {
+			cardColLeft1.innerHTML = `<div class='timeWaiting' style='background-color: ${element["ДопСтатусКоллцентраЦвет"]}'>` + time + "</div>";
+		} else {
+			cardColLeft1.innerHTML = time;
+		}
 	}
 	cardRow1.appendChild(cardColLeft1);
 
